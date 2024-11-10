@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Bilangan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Konversi Bilangan</h1>
+        <label for="inputNumber">Masukkan Angka:</label>
+        <input type="text" id="inputNumber" placeholder="Contoh: 911" onfocus="updatePlaceholder()" oninput="updatePlaceholder()">
+        
+        <label for="fromBase">Dari Basis:</label>
+        <select id="fromBase" onchange="updatePlaceholder()">
+            <option value="10">Desimal (10)</option>
+            <option value="2">Biner (2)</option>
+            <option value="8">Oktal (8)</option>
+            <option value="16">Heksadesimal (16)</option>
+        </select>
+        
+        <label for="toBase">Ke Basis:</label>
+        <select id="toBase">
+            <option value="10">Desimal (10)</option>
+            <option value="2">Biner (2)</option>
+            <option value="8">Oktal (8)</option>
+            <option value="16">Heksadesimal (16)</option>
+        </select>
+        
+        <button onclick="convert()">Konversi</button>
+        
+        <div id="result"></div>
+        <div id="explanation"></div>
+        <div id="warning" style="color: red;"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
