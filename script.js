@@ -9,6 +9,9 @@ function updatePlaceholder() {
         case 8:
             inputNumber.placeholder = "Contoh: 1617";
             break;
+        case 10:
+            inputNumber.placeholder = "Contoh: 911";
+            break;
         case 16:
             inputNumber.placeholder = "Contoh: 1A3F";
             break;
@@ -26,11 +29,7 @@ function validateInput(input, base) {
         16: /^[0-9A-Fa-f]+$/ // Heksadesimal boleh 0-9 dan A-F
     };
 
-    if (!regex[base].test(input)) {
-        return false;
-    }
-
-    return true;
+    return regex[base].test(input);
 }
 
 function getInvalidCharacters(input, base) {
@@ -41,8 +40,7 @@ function getInvalidCharacters(input, base) {
         16: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
     };
 
-    const invalidChars = input.split('').filter(char => !validChars[base].includes(char));
-    return invalidChars;
+    return input.split('').filter(char => !validChars[base].includes(char));
 }
 
 function convert() {
@@ -60,8 +58,8 @@ function convert() {
     // Validasi input
     if (!validateInput(inputNumber, fromBase)) {
         const invalidChars = getInvalidCharacters(inputNumber, fromBase);
-        const invalidCharsMessage = invalidChars.length > 0 ? , angkanya tidak boleh ${invalidChars.join(', ')}. : '.';
-        warningElement.innerHTML = Input tidak valid untuk basis ${fromBase}. Silakan masukkan angka yang sesuai${invalidCharsMessage} Hapus atau perbaikilah angka yang anda masukkan, berikanlah nilai yang benar.;
+        const invalidCharsMessage = invalidChars.length > 0 ? `, angkanya tidak boleh ${invalidChars.join(', ')}.` : '.';
+        warningElement.innerHTML = `Input tidak valid untuk basis ${fromBase}. Silakan masukkan angka yang sesuai${invalidCharsMessage} Hapus atau perbaikilah angka yang anda masukkan, berikanlah nilai yang benar.`;
         return;
     }
 
@@ -74,20 +72,20 @@ function convert() {
         decimalValue = parseInt(inputNumber, 2);
         explanation = `Mengonversi dari Biner ke Desimal: <br>
         1. Setiap digit biner memiliki bobot berdasarkan pangkat 2.<br>
-        2. Contoh: ${inputNumber}₂ = ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 2^${index}).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 2^${index} = ${digit * Math.pow(2, index)}).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber}₂ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 2^${index}`).join(' + ')}<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 2^${index} = ${digit * Math.pow(2, index)}`).join(' + ')} = ${decimalValue}₁₀`;
     } else if (fromBase === 8) {
         decimalValue = parseInt(inputNumber, 8);
         explanation = `Mengonversi dari Oktal ke Desimal: <br>
         1. Setiap digit oktal memiliki bobot berdasarkan pangkat 8.<br>
-        2. Contoh: ${inputNumber}₈ = ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 8^${index}).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 8^${index} = ${digit * Math.pow(8, index)}).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber}₈ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 8^${index}`).join(' + ')}<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 8^${index} = ${digit * Math.pow(8, index)}`).join(' + ')} = ${decimalValue}₁₀`;
     } else if (fromBase === 16) {
         decimalValue = parseInt(inputNumber, 16);
         explanation = `Mengonversi dari Heksadesimal ke Desimal: <br>
         1. Setiap digit heksadesimal memiliki bobot berdasarkan pangkat 16.<br>
-        2. Contoh: ${inputNumber}₁₆ = ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 16^${index}).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => ${digit} × 16^${index} = ${digit * Math.pow(16, index)}).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber} ₁₆ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 16^${index}`).join(' + ')}<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 16^${index} = ${digit * Math.pow(16, index)}`).join(' + ')} = ${decimalValue}₁₀`;
     } else {
         decimalValue = parseInt(inputNumber);
     }
@@ -193,6 +191,6 @@ function convert() {
 function displayResult(result, explanation) {
     const resultElement = document.getElementById('result');
     const explanationElement = document.getElementById('explanation');
-    resultElement.innerHTML = Hasil: ${result};
+    resultElement.innerHTML = `Hasil: ${result}`;
     explanationElement.innerHTML = explanation;
 }
