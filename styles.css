@@ -1,86 +1,160 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
     padding: 20px;
 }
 
 .container {
     max-width: 600px;
     margin: auto;
-    background: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #555;
 }
 
-input, select, button {
-    width: calc(100% - 22px); /* Mengurangi lebar untuk padding */
-    padding: 10px;
-    margin-bottom: 10px;
+input[type="text"], select {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 button {
-    background-color: #28a745;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-#result, #explanation {
-    margin-top: 20px;
+.warning {
+    color: #d9534f;
+    margin-top: 10px;
+    font-weight: bold;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #d9534f;
+    background-color: #f9d6d5;
+    border-radius: 5px;
+}
+
+.result, .explanation {
+    margin-top: 20px;
+    padding: 15px;
     background-color: #e9ecef;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s;
+}
+
+.result:hover, .explanation:hover {
+    background-color: #d6d9db;
+}
+
+.result h2, .explanation h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #007bff;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 10px;
-}
-
-table, th, td {
-    border: 1px solid #ccc;
+    border-collapse: collapse;
 }
 
 th, td {
-    padding: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
     text-align: center;
 }
 
+th {
+    background-color: #007bff;
+    color: white;
+}
+
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
         padding: 15px;
     }
 
-    input, select, button {
-        padding: 8px;
+    button {
+        font-size: 1em;
+    }
+
+    h1 {
+        font-size: 2em;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
 
-    input, select, button {
-        padding: 6px;
+    input[type="text"], select {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 0.9em;
     }
 }
