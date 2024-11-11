@@ -13,6 +13,7 @@ body {
     padding: 20px;
 }
 
+/* Container styling */
 .container {
     max-width: 600px;
     margin: auto;
@@ -23,10 +24,12 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Hover effect for container */
 .container:hover {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Header styling */
 h1 {
     text-align: center;
     color: #007bff;
@@ -34,12 +37,15 @@ h1 {
     font-size: 2.5em;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: bold;
 }
 
+/* Input group styling */
 .input-group {
     margin-bottom: 15px;
 }
 
+/* Label styling */
 label {
     display: block;
     margin-bottom: 5px;
@@ -48,20 +54,24 @@ label {
     color: #555;
 }
 
+/* Input and select styling */
 input[type="text"], select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+/* Focus effect for input and select */
 input[type="text"]:focus, select:focus {
     border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
 }
 
+/* Button styling */
 button {
     width: 100%;
     padding: 12px;
@@ -74,11 +84,13 @@ button {
     transition: background-color 0.3s, transform 0.2s;
 }
 
+/* Hover effect for button */
 button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
 
+/* Warning message styling */
 .warning {
     color: #d9534f;
     margin-top: 10px;
@@ -87,8 +99,10 @@ button:hover {
     border: 1px solid #d9534f;
     background-color: #f9d6d5;
     border-radius: 5px;
+    animation: fadeIn 0.5s;
 }
 
+/* Result and explanation box styling */
 .result, .explanation {
     margin-top: 20px;
     padding: 15px;
@@ -100,16 +114,19 @@ button:hover {
     transition: background-color 0.3s;
 }
 
+/* Hover effect for result and explanation */
 .result:hover, .explanation:hover {
     background-color: #d6d9db;
 }
 
+/* Header for result and explanation */
 .result h2, .explanation h2 {
     margin-bottom: 10px;
     font-size: 1.5em;
     color: #007bff;
 }
 
+/* Table styling */
 table {
     width: 100%;
     margin-top: 10px;
@@ -122,11 +139,13 @@ th, td {
     text-align: center;
 }
 
+/* Header styling for table */
 th {
     background-color: #007bff;
     color: white;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -157,4 +176,193 @@ th {
     button {
         font-size: 0.9em;
     }
+}
+
+/* Additional styles for better aesthetics */
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    font-size: 1em;
+    color: #666;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #999;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animation for fading in elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f4f8;
+}
+
+/* Additional button styles */
+.primary-button {
+    background-color: #28a745;
+}
+
+.primary-button:hover {
+    background-color: #218838;
+}
+
+.secondary-button {
+    background-color: #6c757d;
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+}
+
+/* Alert box styling */
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Card grid layout */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Image styling */
+img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* Typography enhancements */
+h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Custom checkbox styling */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox input {
+    margin-right: 10px;
+}
+
+/* Custom radio button styling */
+.custom-radio {
+    display: flex;
+    align-items: center;
+}
+
+.custom-radio input {
+    margin-right: 10px;
+}
+
+/* Progress bar styling */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.3s;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the tooltip */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
