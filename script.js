@@ -2,31 +2,22 @@ function updatePlaceholder() {
     const fromBase = parseInt(document.getElementById('fromBase').value);
     const inputNumber = document.getElementById('inputNumber');
 
-    switch (fromBase) {
-        case 2:
-            inputNumber.placeholder = "Contoh: 1110001111";
-            break;
-        case 8:
-            inputNumber.placeholder = "Contoh: 1617";
-            break;
-        case 10:
-            inputNumber.placeholder = "Contoh: 911";
-            break;
-        case 16:
-            inputNumber.placeholder = "Contoh: 1A3F";
-            break;
-        default:
-            inputNumber.placeholder = "Contoh: 911";
-            break;
-    }
+    const placeholders = {
+        2: "Contoh: 1110001111",
+        8: "Contoh: 1617",
+        10: "Contoh: 911",
+        16: "Contoh: 1A3F"
+    };
+
+    inputNumber.placeholder = placeholders[fromBase] || "Contoh: 911";
 }
 
 function validateInput(input, base) {
     const regex = {
-        2: /^[0-1]+$/, // Biner hanya boleh 0 dan 1
-        8: /^[0-7]+$/, // Oktal hanya boleh 0-7
-        10: /^[0-9]+$/, // Desimal hanya boleh 0-9
-        16: /^[0-9A-Fa-f]+$/ // Heksadesimal boleh 0-9 dan A-F
+        2: /^[0-1]+$/, 
+        8: /^[0-7]+$/, 
+        10: /^[0-9]+$/, 
+        16: /^[0-9A-Fa-f]+$/
     };
 
     return regex[base].test(input);
@@ -51,11 +42,10 @@ function convert() {
     const resultElement = document.getElementById('result');
     const explanationElement = document.getElementById('explanation');
 
-    warningElement.innerHTML = ''; // Reset peringatan
-    resultElement.innerHTML = ''; // Reset hasil
-    explanationElement.innerHTML = ''; // Reset penjelasan
+    warningElement.innerHTML = ''; 
+    resultElement.innerHTML = ''; 
+    explanationElement.innerHTML = ''; 
 
-    // Validasi input
     if (!validateInput(inputNumber, fromBase)) {
         const invalidChars = getInvalidCharacters(inputNumber, fromBase);
         const invalidCharsMessage = invalidChars.length > 0 ? `, angkanya tidak boleh ${invalidChars.join(', ')}.` : '.';
@@ -67,30 +57,42 @@ function convert() {
     let result;
     let explanation = '';
 
-    // Konversi dari basis asal ke desimal
     if (fromBase === 2) {
         decimalValue = parseInt(inputNumber, 2);
         explanation = `Mengonversi dari Biner ke Desimal: <br>
         1. Setiap digit biner memiliki bobot berdasarkan pangkat 2.<br>
-        2. Contoh: ${inputNumber}₂ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 2^${index}`).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 2^${index} = ${digit * Math.pow(2, index)}`).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber}₂ = (${inputNumber.split('').reverse().map((digit, index) => {
+            return `${digit} × 2^${index} = ${digit * Math.pow(2, index)}`;
+        }).join(') + (')})<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => {
+            return `(${digit} × 2^${index})`;
+        }).join(' + ')} = ${decimalValue}₁₀`;
     } else if (fromBase === 8) {
         decimalValue = parseInt(inputNumber, 8);
         explanation = `Mengonversi dari Oktal ke Desimal: <br>
         1. Setiap digit oktal memiliki bobot berdasarkan pangkat 8.<br>
-        2. Contoh: ${inputNumber}₈ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 8^${index}`).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 8^${index} = ${digit * Math.pow(8, index)}`).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber}₈ = (${inputNumber.split('').reverse().map((digit, index) => {
+            return `${digit} × 8^${index} = ${digit * Math.pow(8, index)}`;
+        }).join(') + (')})<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => {
+            return `(${digit} × 8^${index})`;
+        }).join(' + ')} = ${decimalValue}₁₀`;
     } else if (fromBase === 16) {
         decimalValue = parseInt(inputNumber, 16);
         explanation = `Mengonversi dari Heksadesimal ke Desimal: <br>
         1. Setiap digit heksadesimal memiliki bobot berdasarkan pangkat 16.<br>
-        2. Contoh: ${inputNumber} ₁₆ = ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 16^${index}`).join(' + ')}<br>
-        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => `${digit} × 16^${index} = ${digit * Math.pow(16, index)}`).join(' + ')} = ${decimalValue}₁₀`;
+        2. Contoh: ${inputNumber}₁₆ = (${inputNumber.split('').reverse().map((digit, index) => {
+            const decimalDigit = parseInt(digit, 16);
+            return `${digit} × 16^${index} = ${decimalDigit} × ${Math.pow(16, index)}`;
+        }).join(') + (')}<br>
+        3. Hitung: ${inputNumber.split('').reverse().map((digit, index) => {
+            const decimalDigit = parseInt(digit, 16);
+            return `(${decimalDigit} × ${Math.pow(16, index)})`;
+        }).join(' + ')} = ${decimalValue}₁₀`;
     } else {
         decimalValue = parseInt(inputNumber);
     }
 
-    // Konversi dari desimal ke basis tujuan
     if (toBase === 2) {
         result = decimalValue.toString(2);
         explanation += `<hr><br>Mengonversi dari Desimal ke Biner: <br>
@@ -194,3 +196,8 @@ function displayResult(result, explanation) {
     resultElement.innerHTML = `Hasil: ${result}`;
     explanationElement.innerHTML = explanation;
 }
+
+// Event listeners untuk mengupdate placeholder dan konversi
+document.getElementById('fromBase').addEventListener('change', updatePlaceholder);
+document.getElementById('convertButton').addEventListener('click', convert);
+window.onload = updatePlaceholder;
